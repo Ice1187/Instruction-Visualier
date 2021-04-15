@@ -1,0 +1,127 @@
+.main {
+  height: 95vh;
+  width: 80%;
+  margin: 1rem auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 2fr 1fr;
+  grid-template-areas:
+    "instruction register"
+    "memory memory";
+  grid-gap: 1rem;
+  justify-content: center;
+}
+
+.ins_frame {
+  grid-area: instruction;
+  border: 0.1rem solid blue;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  text-align: center;
+
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr 15fr;
+  grid-template-areas:
+    "title title"
+    "address instruction";
+}
+
+.ins_title {
+  all: unset;
+  grid-area: title;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ins_area {
+  all: unset;
+  display: block;
+
+  position: relative;
+  grid-area: instruction;
+  margin: 0.5rem;
+  border: 0.1rem solid gray;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+
+  text-align: left;
+}
+
+.reg_frame {
+  grid-area: register;
+  border: 0.1rem solid green;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  text-align: center;
+
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr 4fr;
+  grid-template-rows: repeat(17, 1fr);
+  /*grid-template-areas:
+    "title title title title"
+    "reg0 val0 reg16 val16"
+    "reg1 val1 reg17 val17"
+    "reg2 val2 reg18 val18"
+    "reg3 val3 reg19 val19"
+    "reg4 val4 reg20 val20"
+    "reg5 val5 reg21 val21"
+    "reg6 val6 reg22 val22"
+    "reg7 val7 reg23 val23"
+    "reg8 val8 reg24 val24"
+    "reg9 val9 reg25 val25"
+    "reg10 val0 reg26 val26"
+    "reg11 val1 reg27 val27"
+    "reg12 val2 reg28 val28"
+    "reg13 val3 reg29 val29"
+    "reg14 val4 reg30 val30"
+    "reg15 val5 reg31 val31";*/
+  justify-content: center;
+  align-items: center;
+}
+
+.reg_title {
+  all: unset;
+  grid-column: 1 / 5;
+  grid-row: 1;
+
+  display: block;
+  justify-content: center;
+  align-items: center;
+}
+
+.mem_frame {
+  grid-area: memory;
+  border: 0.1rem solid orange;
+  border-radius: 1rem;
+  text-align: center;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;	
+}
+
+.mem_title {
+  all: unset;
+
+  display: block;
+  justify-content: center;
+  align-items: center;
+}
+
+.mem_area {
+  all: unset;
+  display: block;
+  position: relative;
+
+	height: 75%;
+	width: 95%;
+  margin: 0.5rem;
+  border: 0.1rem solid gray;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+

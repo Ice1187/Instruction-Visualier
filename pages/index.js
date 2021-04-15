@@ -1,65 +1,76 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import React from 'react'
 
-export default function Home() {
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+import Register from '../components/register.js'
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+import CPU from '../lib/cpu.js'
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+import styles from '../styles/Main.module.css'
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+class Home extends React.Component {
+	constructor(props) {
+		super(props);
+		this.cpu = new CPU();
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
+		this.getRegList = this.getRegList.bind(this);
+		this.showRegisterValue = this.showRegisterValue.bind(this);
+	}
 
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+	getRegList() {
+		let reg_list = [];
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+		for (let i = 0; i < 16; i++) {
+			reg_list.push(<Register name={`x${i}`} cpu={this.cpu}/>);
+			reg_list.push(<Register name={`x${i+16}`} cpu={this.cpu}/>);
+		}
+		
+		return reg_list;
+	}
+
+ 	showRegisterValue() {
+		for(let i = 0; i < 32;i++) {
+			let name = `x${i}`;
+			if (this.cpu[name].getBytes() !== 0) {
+				console.log(name);
+				console.log(this.cpu[name].toBitString());
+				console.log(this.cpu[name].toString());
+			}
+		}
+	}
+	
+	render() {
+		return (
+			<>
+				<Head>
+					<title>Instruction Visualizer</title>
+				</Head>
+
+				<main className={styles.main}>
+					<div className={styles.ins_frame}>
+						<text className={styles.ins_title}>Instruction Here</text>
+						<textarea 
+							className={styles.ins_area}
+							rows="10"
+							cols="20"
+							wrap="hard"
+							autoFocus
+							placeholder="mov $rax, 0xdeadbeef"
+						/>
+					</div>
+					<div className={styles.reg_frame}>
+						<text className={styles.reg_title}>Register Here</text>
+						{this.getRegList()}
+						<button onClick={this.showRegisterValue}>show register value</button>
+					</div>
+					<div className={styles.mem_frame}>
+						<text className={styles.mem_title}>Memory Here</text>
+						<textarea className={styles.mem_area} />
+					</div>
+				</main>
+			</>
+		)
+	}
 }
+
+export default Home;

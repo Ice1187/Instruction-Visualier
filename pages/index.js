@@ -21,8 +21,8 @@ class Home extends React.Component {
 		let reg_list = [];
 
 		for (let i = 0; i < 16; i++) {
-			reg_list.push(<Register name={`x${i}`} cpu={this.cpu}/>);
-			reg_list.push(<Register name={`x${i+16}`} cpu={this.cpu}/>);
+			reg_list.push(<Register reg={this.cpu.regs[`x${i}`]}/>);
+			reg_list.push(<Register reg={this.cpu.regs[`x${i+16}`]}/>);
 		}
 		
 		return reg_list;
@@ -31,10 +31,10 @@ class Home extends React.Component {
  	showRegisterValue() {
 		for(let i = 0; i < 32;i++) {
 			let name = `x${i}`;
-			if (this.cpu[name].getBytes() !== 0) {
+			if (this.cpu.regs[name].getBytes() !== 0) {
 				console.log(name);
-				console.log(this.cpu[name].toBitString());
-				console.log(this.cpu[name].toString());
+				console.log(this.cpu.regs[name].toBitString());
+				console.log(this.cpu.regs[name].toString());
 			}
 		}
 	}

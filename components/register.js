@@ -4,9 +4,7 @@ import styles from '../styles/Register.module.css'
 class Register extends React.Component {
 	constructor(props) {
 		super(props);
-		this.cpu = this.props.cpu;
-		this.name = this.props.name;
-		this.reg = this.cpu[this.name];
+		this.reg = this.props.reg;
 
 		this.state = {value: this.reg.toString()}
 
@@ -14,19 +12,19 @@ class Register extends React.Component {
 	}
 
 	handleChange(e) {
-		this.setState({value: e.target.value});
+		// this.setState({value: e.target.value});
 		this.reg.setValue(parseInt(e.target.value, 16));
+		this.setState({value: this.reg.toString()});
 	}
 
 	render() {
 		return <React.Fragment> 
-			<text className={styles.reg_name}>{this.name}</text>
+			<text className={styles.reg_name}>{this.reg.name}</text>
 			<input 
 				className={styles.reg_val}
 				type="text"
-				defaultValue={this.state.value}
+				value={this.state.value}
 				onChange={this.handleChange}
-				// onChange={((e) => this.setState({value: e.target.value})) }
 			/>
 		</React.Fragment>
 	}

@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import React from 'react'
-
 import Register from '../components/register.js'
+import Instruction from '../components/instruction.js'
 
 import CPU from '../lib/cpu.js'
 
@@ -47,17 +47,7 @@ class Home extends React.Component {
 				</Head>
 
 				<main className={styles.main}>
-					<div className={styles.ins_frame}>
-						<text className={styles.ins_title}>Instruction Here</text>
-						<textarea 
-							className={styles.ins_area}
-							rows="10"
-							cols="20"
-							wrap="hard"
-							autoFocus
-							placeholder="mov $rax, 0xdeadbeef"
-						/>
-					</div>
+					<Instruction />
 					<div className={styles.reg_frame}>
 						<text className={styles.reg_title}>Register Here</text>
 						{this.getRegList()}

@@ -6,27 +6,30 @@ class Register extends React.Component {
 		super(props);
 		this.reg = this.props.reg;
 
+		// Refernce directly from this.reg, don't use this.state.value
 		this.state = {value: this.reg.toString()}
 
 		this.handleChange = this.handleChange.bind(this);
 	}
 
 	handleChange(e) {
-		// this.setState({value: e.target.value});
-		this.reg.setValue(parseInt(e.target.value, 16));
+		let value = parseInt(e.target.value.slice(3), 16);
+		this.reg.setValue(value);
 		this.setState({value: this.reg.toString()});
 	}
 
 	render() {
-		return <React.Fragment> 
-			<text className={styles.reg_name}>{this.reg.name}</text>
-			<input 
-				className={styles.reg_val}
-				type="text"
-				value={this.state.value}
-				onChange={this.handleChange}
-			/>
-		</React.Fragment>
+		return (
+			<>
+				<text className={styles.reg_name}>{this.reg.name}</text>
+				<input 
+					className={styles.reg_val}
+					type="text"
+					value={this.state.value}
+					onChange={this.handleChange}
+				/>
+			</>
+		)
 	}
 }
 

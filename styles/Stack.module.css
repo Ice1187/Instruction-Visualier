@@ -1,0 +1,19 @@
+.stk_frame {
+  grid-area: stack;
+  border: 0.1rem solid brown;
+  border-radius: 1rem;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.stk_title {
+  all: unset;
+
+  display: block;
+  justify-content: center;
+  align-items: center;
+}

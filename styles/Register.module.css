@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;300&display=swap');
+
 .reg_name {
   all: unset;
   display: block;
@@ -8,8 +10,15 @@
   display: block;
 
   position: relative;
-  width: 100%;
-  border-bottom: 0.1rem solid black;
+  width: 80%;
+	height: 70%;
+	border: 0.1rem solid gray;
+  /* border-bottom: 0.1rem solid black; */
+	border-radius: 0.5rem;
 
-  text-align: left;
+	justify-content: center;
+	align-items: center;
+
+	font-family: 'Roboto Mono', monospace; 
+  text-align: center;
 }
